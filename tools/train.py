@@ -26,6 +26,7 @@ from lib.network import PoseNet, PoseRefineNet
 from lib.loss import Loss
 from lib.loss_refiner import Loss_refine
 from lib.utils import setup_logger
+from time import sleep
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', type=str, default = 'ycb', help='ycb or linemod')
@@ -48,6 +49,8 @@ opt = parser.parse_args()
 
 
 def main():
+    print("Sleeping")
+    #sleep(1)
     opt.manualSeed = random.randint(1, 10000)
     random.seed(opt.manualSeed)
     torch.manual_seed(opt.manualSeed)
@@ -59,7 +62,7 @@ def main():
         opt.log_dir = 'experiments/logs/ycb' #folder to save logs
         opt.repeat_epoch = 1 #number of repeat times for one epoch training
     elif opt.dataset == 'linemod':
-        opt.num_objects = 13
+        opt.num_objects = 1     # 13
         opt.num_points = 500
         opt.outf = 'trained_models/linemod'
         opt.log_dir = 'experiments/logs/linemod'
@@ -128,7 +131,7 @@ def main():
         optimizer.zero_grad()
 
         for rep in range(opt.repeat_epoch):
-            for i, data in enumerate(dataloader, 0):
+            for i, data in enumerate(dataloader):
                 points, choose, img, target, model_points, idx = data
                 points, choose, img, target, model_points, idx = Variable(points).cuda(), \
                                                                  Variable(choose).cuda(), \

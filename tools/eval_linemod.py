@@ -28,12 +28,12 @@ parser.add_argument('--model', type=str, default = '',  help='resume PoseNet mod
 parser.add_argument('--refine_model', type=str, default = '',  help='resume PoseRefineNet model')
 opt = parser.parse_args()
 
-num_objects = 13
-objlist = [1, 2, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15]
+num_objects = 1
+objlist = [1]
 num_points = 500
 iteration = 4
 bs = 1
-dataset_config_dir = 'datasets/linemod/dataset_config'
+dataset_config_dir = 'datasets/linemod/grelhas/models'
 output_result_dir = 'experiments/eval_result/linemod'
 knn = KNearestNeighbor(1)
 
