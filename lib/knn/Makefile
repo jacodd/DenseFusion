@@ -1,5 +1,5 @@
 # Unix commands.
-PYTHON := python3
+PYTHON := python
 NVCC_COMPILE := nvcc -c -o
 RM_RF := rm -rf
 
